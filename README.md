@@ -239,6 +239,23 @@ python_programing/
 
 Die Anwendung folgt einer mehrschichtigen Struktur:
 
+```mermaid
+flowchart TB
+	User[Benutzer im Browser]
+	UI[NiceGUI UI\nPages & Navigation]
+	Services[Service-Schicht\nUser, Quiz, Scoring, Session]
+	DAO[Data-Access-Schicht\nDAOs & Repository-Logik]
+	Domain[Domain-Schicht\nModelle & Entitaeten]
+	DB[(SQLite Datenbank)]
+
+	User --> UI
+	UI --> Services
+	Services --> DAO
+	Services --> Domain
+	DAO --> DB
+	DAO --> Domain
+```
+
 - UI-Schicht:
 	- NiceGUI-Seiten und Navigation
 - Service-Schicht:
