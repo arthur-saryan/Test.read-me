@@ -19,6 +19,7 @@ Diese Anwendung richtet sich an Lehrpersonen und Lernende:
 - [Projektstruktur](#projektstruktur)
 - [Architektur](#architektur)
 - [Datenmodell](#datenmodell)
+- [Use-Case-Diagramm](#use-case-diagramm)
 - [Tests](#tests)
 - [Troubleshooting](#troubleshooting)
 - [Roadmap](#roadmap)
@@ -208,6 +209,45 @@ Fuer eine GitHub-Praesentation sind folgende Ergaenzungen empfehlenswert:
 - optional 1 ER-Diagramm fuer Datenmodell
 
 Hinweis: Sobald du Bilder hinzufuegst, kannst du sie z. B. in einem docs-Ordner ablegen und hier im README einbinden.
+
+## Use-Case-Diagramm
+
+```mermaid
+flowchart LR
+		Teacher((Teacher))
+		Student((Student))
+
+		subgraph QuizApp[Schul Quiz Webanwendung]
+				UC1[Quiz erstellen]
+				UC2[Fragen und Antwortoptionen verwalten]
+				UC3[Quiz verfuegbar machen]
+				UC4[Quiz loesen]
+				UC5[Antworten speichern]
+				UC6[Ergebnis anzeigen]
+				UC7[Ergebnisse einsehen]
+		end
+
+		Teacher --> UC1
+		Teacher --> UC2
+		Teacher --> UC3
+		Teacher --> UC7
+
+		Student --> UC4
+		Student --> UC5
+		Student --> UC6
+```
+
+### Haupt-Use-Cases
+
+- Teacher
+	- Quiz erstellen
+	- Fragen und Antwortoptionen verwalten
+	- Quiz verfuegbar machen
+	- Ergebnisse einsehen
+- Student
+	- Quiz loesen
+	- Antworten speichern
+	- Ergebnis anzeigen
 
 ## Projektstruktur
 
