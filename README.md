@@ -398,17 +398,6 @@ pytest -q
 - Exportfunktionen fuer Ergebnisse
 - Optional: Rollen- und Rechtekonzept weiter ausbauen
 
-## Beitrag leisten
-
-Beitraege sind willkommen.
-
-Vorschlag fuer den Workflow:
-
-1. Repository forken oder Branch erstellen
-2. Feature implementieren
-3. Tests ausfuehren
-4. Pull Request mit kurzer Beschreibung erstellen
-
 ## 👥 Team & Contributions
 
 > 🚧 Fill in the names of all team members and describe their individual contributions below.
