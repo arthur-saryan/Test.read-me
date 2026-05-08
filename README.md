@@ -92,15 +92,13 @@ Als Teacher moechte ich Ergebnisse nachvollziehen koennen, damit ich den Lernfor
 - SQLite
 - python-dotenv
 
-## Projektstatus
+## Projektphasen
 
-Der Kern der Anwendung ist implementiert und lauffaehig:
-
-- Phase 1: Datenbank und ORM-Grundstruktur abgeschlossen
-- Phase 2: Benutzerverwaltung mit Rollen abgeschlossen
-- Phase 3: Quizverwaltung abgeschlossen
-- Phase 4: Quiz-Durchfuehrung und Ergebnisse abgeschlossen
-- Phase 5: Browser-UI wird laufend verbessert
+- Phase 1: Datenbank und ORM-Grundstruktur
+- Phase 2: Benutzerverwaltung mit Rollen
+- Phase 3: Quizverwaltung
+- Phase 4: Quiz-Durchfuehrung und Ergebnisse
+- Phase 5: Browser-UI
 
 ## Erfuellung der Projektkriterien
 
