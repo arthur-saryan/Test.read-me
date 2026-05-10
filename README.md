@@ -43,13 +43,13 @@ Diese Anwendung richtet sich an Lehrpersonen und Lernende:
 - Ergebnisanzeige mit Score nach Abschluss
 - Persistente Speicherung in SQLite
 
-## Fachliche Anforderungen
+## Projektkontext
 
-### Problem
+### Ausgangssituation
 
 Im schulischen Alltag werden Quizze und Auswertungen oft manuell oder ueber mehrere Tools hinweg verwaltet. Das fuehrt zu Medienbruechen, unklaren Ergebnissen und hohem organisatorischem Aufwand.
 
-### Zielbild
+### Zielsetzung
 
 Die Anwendung soll den kompletten Ablauf in einem System abdecken:
 
@@ -57,7 +57,7 @@ Die Anwendung soll den kompletten Ablauf in einem System abdecken:
 - Quizze browserbasiert durchfuehren
 - Ergebnisse reproduzierbar speichern und anzeigen
 
-## User Stories
+## Anwendungsfaelle
 
 ### 1. Quiz erstellen (Teacher)
 Als Teacher moechte ich Quizze und Fragen im Browser erstellen, damit Lernende direkt damit arbeiten koennen.
@@ -92,13 +92,15 @@ Als Teacher moechte ich Ergebnisse nachvollziehen koennen, damit ich den Lernfor
 - SQLite
 - python-dotenv
 
-## Projektphasen
+## Projektstatus
 
-- Phase 1: Datenbank und ORM-Grundstruktur
-- Phase 2: Benutzerverwaltung mit Rollen
-- Phase 3: Quizverwaltung
-- Phase 4: Quiz-Durchfuehrung und Ergebnisse
-- Phase 5: Browser-UI
+Das Projekt befindet sich in einem funktionsfaehigen Entwicklungsstand.
+
+- Datenbank und ORM-Grundstruktur sind vorhanden
+- Benutzerverwaltung mit Rollen ist umgesetzt
+- Quizverwaltung ist umgesetzt
+- Quiz-Durchfuehrung und Ergebnisanzeige sind umgesetzt
+- Die Browser-UI wird weiter verfeinert
 
 ## Erfuellung der Projektkriterien
 
@@ -198,15 +200,15 @@ Standardwerte:
 3. Fragen beantworten und abschliessen
 4. Ergebnis und Score einsehen
 
-## Dokumentation und Visualisierung
+## Abbildungen und Diagramme
 
-Fuer eine GitHub-Praesentation sind folgende Ergaenzungen empfehlenswert:
+Zur vollstaendigen Dokumentation sind folgende Abbildungen vorgesehen:
 
 - 2 bis 4 UI-Screenshots (Login, Quizverwaltung, Quizdurchfuehrung, Ergebnis)
 - 1 Architekturdiagramm (Layer/Komponenten)
 - optional 1 ER-Diagramm fuer Datenmodell
 
-Hinweis: Sobald du Bilder hinzufuegst, kannst du sie z. B. in einem docs-Ordner ablegen und hier im README einbinden.
+Die Abbildungen koennen bei Bedarf in einem docs-Ordner abgelegt und im README eingebunden werden.
 
 ## Use-Case-Diagramm
 
@@ -275,7 +277,7 @@ python_programing/
 
 ## Architektur
 
-Die Anwendung folgt einer mehrschichtigen Struktur:
+Die Anwendung ist in einer mehrschichtigen Struktur aufgebaut:
 
 ```mermaid
 flowchart TB
@@ -303,7 +305,7 @@ flowchart TB
 - Domain-Schicht:
 	- Entitaeten und Datenmodelle
 
-Vorteile dieser Struktur:
+Begruendung der Struktur:
 
 - bessere Testbarkeit
 - klare Verantwortlichkeiten
@@ -331,15 +333,24 @@ Die Datenbank wird beim Start initialisiert und bei Bedarf mit Seed-Daten vorber
 
 ## Tests
 
-Tests ausfuehren:
+Die Tests dienen als Nachweis, dass die fachlichen Anforderungen nicht nur implementiert, sondern auch nachvollziehbar pruefbar sind. Geprueft werden fachliche Logik, Datenbankverhalten und typische Benutzerablaeufe.
+
+### Ziel der Tests
+
+- Nachweis der korrekten Berechnung und Auswertung
+- Pruefung der Persistenz in der Datenbank
+- Absicherung der zentralen Benutzerablaeufe
+- Erkennung von Validierungsfehlern und Rollenfehlern
+
+### Ausfuehrung
 
 ```bash
 pytest -q
 ```
 
-### Test Mix
+### Testumfang
 
-**Insgesamt 12 Tests:**
+Der Testumfang umfasst insgesamt 12 Tests:
 
 - 6 Unit Tests
 - 3 DB Tests
@@ -347,26 +358,34 @@ pytest -q
 
 ### Unit Tests
 
-1. **Scoring bei allen korrekten Antworten**: Score = 100%
-2. **Scoring bei teilweise korrekten Antworten**: Anteilmaessige Berechnung
-3. **Teacher darf Quiz erstellen, Student nicht**: Rollen-Check
-4. **Validierung: Fragetext ist erforderlich**: Fehlerhafte Eingabe abgelehnt
-5. **Validierung: Mindestens 2 Antwortoptionen pro Frage**: Eingabevalidierung
-6. **True/False-Frage mit richtiger Auswertung**: Logik-Check
+| Testfall | Pruefziel |
+|---|---|
+| Scoring bei allen korrekten Antworten | Der Score wird mit 100% berechnet. |
+| Scoring bei teilweise korrekten Antworten | Die Bewertung erfolgt anteilig. |
+| Rollenpruefung Teacher/Student | Ein Teacher kann Quizze erstellen, ein Student nicht. |
+| Validierung: Fragetext erforderlich | Unvollstaendige Eingaben werden abgelehnt. |
+| Validierung: Mindestens zwei Antwortoptionen | Eine Frage wird nur bei gueltiger Mindestanzahl gespeichert. |
+| True/False-Auswertung | Die Antwortlogik fuer Ja/Nein-Fragen arbeitet korrekt. |
 
 ### DB Tests
 
-1. **Quiz-Speicherung und -Abruf**: Gespeicherte Quizze koennen abgerufen werden
-2. **Fragen und Antwortoptionen persistent**: Verhaeltnisse bleiben erhalten
-3. **Quiz-Sessions mit Antworten**: QuizSession speichert alle Benutzerantworten korrekt
+| Testfall | Pruefziel |
+|---|---|
+| Quiz-Speicherung und -Abruf | Gespeicherte Quizze koennen wieder geladen werden. |
+| Fragen und Antwortoptionen persistent | Die Beziehungen zwischen den Datensaetzen bleiben erhalten. |
+| Quiz-Session mit Antworten | Eine Session speichert Antworten vollstaendig und korrekt. |
 
 ### Integration Tests
 
-1. **End-to-End Teacher-Flow**: Teacher registriert sich, erstellt Quiz mit 5 Fragen, speichert erfolgreich
-2. **End-to-End Student-Flow**: Student loest Quiz, speichert Antworten, erhält Score > 0
-3. **Vollstaendiger Workflow**: Mehrere Students loesen gleiches Quiz, Ergebnisse sind unterschiedlich und korrekt
+| Testfall | Pruefziel |
+|---|---|
+| End-to-End Teacher-Flow | Ein Teacher registriert sich, erstellt ein Quiz mit fuemf Fragen und speichert erfolgreich. |
+| End-to-End Student-Flow | Ein Student loest ein Quiz, speichert Antworten und erhaelt ein Ergebnis. |
+| Vollstaendiger Workflow | Mehrere Studenten bearbeiten dasselbe Quiz und erhalten nachvollziehbare Ergebnisse. |
 
 ### Testfall-Template
+
+Zur einheitlichen Dokumentation kann folgender Aufbau verwendet werden:
 
 1. Testfall-ID
 2. Beschreibung/Ziel
@@ -376,6 +395,10 @@ pytest -q
 6. Erwartetes Ergebnis
 7. Tatsaechliches Ergebnis
 8. Status (Pass/Fail)
+
+### Bewertungsrelevanz
+
+Die Tests belegen, dass die Kernfunktionen reproduzierbar funktionieren und die Anwendung nicht nur visuell, sondern auch fachlich abgesichert ist.
 9. Bemerkungen
 
 ## Troubleshooting
@@ -389,7 +412,7 @@ pytest -q
 	- quiz_app.db sichern und dann loeschen
 	- App neu starten, damit Schema neu angelegt wird
 
-## Roadmap
+## Weiterentwicklung
 
 - UI/UX weiter verbessern
 - Statistik und Auswertung erweitern
