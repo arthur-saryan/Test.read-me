@@ -39,6 +39,7 @@ Diese Anwendung richtet sich an Lehrpersonen und Lernende:
 - Fragetypen:
 	- Multiple Choice
 	- True/False
+    - Single Choice
 - Quiz-Durchfuehrung inkl. Speicherung der Antworten
 - Ergebnisanzeige mit Score nach Abschluss
 - Persistente Speicherung in SQLite
